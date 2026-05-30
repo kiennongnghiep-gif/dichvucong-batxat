@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Loader2, Info, MapPin, FileText, Clock, CreditCard, ChevronRight, Gavel, Home, User, Landmark, Star, Leaf, Users, Download, Phone, Heart } from 'lucide-react';
+import { Search, Loader2, Info, MapPin, FileText, Clock, CreditCard, ChevronRight, Gavel, Home, User, Landmark, Leaf, Users, Download, Phone, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MOCK_PROCEDURES, askGeminiProcedure, type Procedure } from './services/procedureService.ts';
+import PWAUpdater from './components/PWAUpdater.tsx';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -74,16 +75,12 @@ export default function App() {
         >
           <div className="flex flex-col items-center gap-4 bg-white/10 p-6 rounded-[2.5rem] backdrop-blur-xl border border-white/20 shadow-2xl">
             <div className="relative w-32 h-32 flex items-center justify-center">
-              {/* Premium National Gold Star Emblem centered on circular red seal */}
-              <svg viewBox="0 0 100 100" className="w-full h-full" id="modern-app-logo">
+              {/* Premium National Round Seal Emblem */}
+              <svg viewBox="0 0 200 200" className="w-full h-full absolute inset-0" id="modern-app-logo">
                 <defs>
                    {/* Drop shadow for the outer app icon container */}
                    <filter id="appIconGlow" x="-15%" y="-15%" width="130%" height="130%">
-                     <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#000000" floodOpacity="0.35" />
-                   </filter>
-                   {/* 3D depth shadow for the inner golden star */}
-                   <filter id="softDepth3D" x="-30%" y="-30%" width="160%" height="160%">
-                     <feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodColor="#7A0A0E" floodOpacity="0.65" />
+                     <feDropShadow dx="0" dy="10" stdDeviation="12" floodColor="#000000" floodOpacity="0.35" />
                    </filter>
                    
                    {/* State Red #EE2830 Vivid Crimson style */}
@@ -91,32 +88,26 @@ export default function App() {
                      <stop offset="0%" stopColor="#EE2830" />
                      <stop offset="100%" stopColor="#BD1017" />
                    </linearGradient>
-
-                   {/* Golden Star Gradients using premium, high-contrast flat-style colors */}
-                   <linearGradient id="goldStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                     <stop offset="0%" stopColor="#FFF275" />
-                     <stop offset="100%" stopColor="#FFC20E" />
-                   </linearGradient>
                 </defs>
 
                 {/* Symmetrical App Icon Base - Perfect Circular Emblem */}
-                <circle cx="50" cy="50" r="44" fill="url(#redGovernmentGrad)" filter="url(#appIconGlow)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-
-                {/* Perfect 5-Pointed Golden Star with 3D Depth Shadow */}
-                <g filter="url(#softDepth3D)">
-                  <polygon 
-                    points="50,17.8 56.1,36.5 75.8,36.5 59.9,48.2 66.0,66.9 50,55.3 34.0,66.9 40.1,48.2 24.2,36.5 43.9,36.5" 
-                    fill="url(#goldStarGrad)" 
-                  />
-                </g>
+                <circle cx="100" cy="100" r="88" fill="url(#redGovernmentGrad)" filter="url(#appIconGlow)" stroke="rgba(255,255,255,0.22)" strokeWidth="3" />
 
                 {/* Inside subtle border highlight */}
-                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
+                <circle cx="100" cy="100" r="84" fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="2" />
               </svg>
+
+              {/* Centered logo image replacing the star with perfect scaling and shadow */}
+              <img 
+                src="/logo-dichvucong.png" 
+                alt="Logo dịch vụ công xã Bát Xát" 
+                referrerPolicy="no-referrer"
+                className="absolute w-[62%] h-[62%] object-contain select-none pointer-events-none drop-shadow-[0_6px_10px_rgba(0,0,0,0.35)]"
+              />
             </div>
             <div className="text-center border-t border-white/10 pt-5 w-full">
               <h1 className="text-lg md:text-xl font-black leading-tight tracking-tight uppercase mb-0.5" id="app-title">
-                TRUNG TÂM HÀNH CHÍNH CÔNG
+                TRUNG TÂM PHỤC VỤ HÀNH CHÍNH CÔNG
               </h1>
               <div className="text-brand-yellow font-black text-2xl tracking-[0.25em] h-7 flex items-center justify-center uppercase">XÃ BÁT XÁT</div>
             </div>
@@ -134,9 +125,24 @@ export default function App() {
           </div>
         </div>
 
-        <p className="text-sm px-6 py-2 bg-white/5 rounded-full inline-block backdrop-blur-sm border border-white/5 opacity-80 italic text-center w-full">
-          Đại đoàn kết tra cứu thủ tục - Phục vụ bà con nhanh chóng
-        </p>
+        <div className="flex justify-center w-full px-4">
+          <p className="inline-block text-[15px] md:text-lg px-8 py-3 bg-gradient-to-r from-brand-yellow/5 via-brand-yellow/20 to-brand-yellow/5 border border-brand-yellow/40 text-brand-yellow font-black tracking-widest text-center rounded-2xl shadow-[0_4px_25px_rgba(255,201,60,0.15)] backdrop-blur-md uppercase">
+            Dân biết - Dân dùng - Dân hài lòng
+          </p>
+        </div>
+
+        {/* Hotline hỗ trợ bà con di chuyển lên đầu trang */}
+        <div className="mt-5 flex justify-center">
+          <a href="tel:0987295067" className="inline-flex items-center gap-3.5 bg-brand-yellow text-brand-red-pride px-6 py-3 rounded-2xl font-black shadow-2xl hover:scale-105 transition-transform active:scale-95 group border-2 border-white/10">
+            <div className="bg-brand-red-pride p-2.5 rounded-xl group-hover:rotate-12 transition-transform shadow-lg">
+              <Phone className="w-5 h-5 text-white fill-current" />
+            </div>
+            <div className="text-left leading-none">
+              <span className="text-[9px] uppercase block opacity-70 mb-1 font-bold tracking-widest">Hotline hỗ trợ bà con</span>
+              <span className="text-xl font-black">0987295067</span>
+            </div>
+          </a>
+        </div>
       </header>
 
       <main className="max-w-xl mx-auto px-4 pb-24">
@@ -221,7 +227,12 @@ export default function App() {
               >
                 <div className="relative">
                    <Loader2 className="w-16 h-16 text-brand-yellow animate-spin" />
-                   <Star className="w-6 h-6 text-brand-yellow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-current opacity-50" />
+                   <img 
+                     src="/logo-dichvucong.png" 
+                     alt="Logo" 
+                     referrerPolicy="no-referrer"
+                     className="w-7 h-7 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain opacity-70 select-none pointer-events-none" 
+                   />
                 </div>
                 <p className="mt-4 text-center font-medium">Hệ thống đang tra cứu cho bà con...</p>
               </motion.div>
@@ -336,18 +347,7 @@ export default function App() {
           </p>
         </section>
 
-        {/* Bottom Hotline */}
-        <div className="mt-12 mb-8 flex justify-center">
-          <a href="tel:0987295067" className="inline-flex items-center gap-4 bg-brand-yellow text-brand-red-pride px-8 py-4 rounded-3xl font-black shadow-2xl hover:scale-105 transition-transform active:scale-95 group border-2 border-white/10">
-            <div className="bg-brand-red-pride p-3 rounded-2xl group-hover:rotate-12 transition-transform shadow-lg">
-              <Phone className="w-6 h-6 text-white fill-current" />
-            </div>
-            <div className="text-left leading-none">
-              <span className="text-[10px] uppercase block opacity-70 mb-1 font-bold tracking-widest">Hotline hỗ trợ bà con</span>
-              <span className="text-2xl font-black">0987295067</span>
-            </div>
-          </a>
-        </div>
+
       </main>
 
       {/* Footer */}
@@ -359,6 +359,7 @@ export default function App() {
         </div>
         <p className="italic">Phục vụ người dân tra cứu thủ tục hành chính nhanh chóng, thuận tiện</p>
       </footer>
+      <PWAUpdater />
     </div>
   );
 }
