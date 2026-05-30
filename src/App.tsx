@@ -106,7 +106,7 @@ export default function App() {
               />
             </div>
             <div className="text-center border-t border-white/10 pt-5 w-full">
-              <h1 className="text-lg md:text-xl font-black leading-tight tracking-tight uppercase mb-0.5" id="app-title">
+              <h1 className="text-[clamp(22px,5vw,34px)] md:text-[40px] lg:text-[52px] font-extrabold leading-[1.15] text-center mx-auto uppercase mb-2 whitespace-normal md:whitespace-nowrap" id="app-title">
                 TRUNG TÂM PHỤC VỤ HÀNH CHÍNH CÔNG
               </h1>
               <div className="text-brand-yellow font-black text-2xl tracking-[0.25em] h-7 flex items-center justify-center uppercase">XÃ BÁT XÁT</div>
@@ -126,7 +126,7 @@ export default function App() {
         </div>
 
         <div className="flex justify-center w-full px-4">
-          <p className="inline-block text-[15px] md:text-lg px-8 py-3 bg-gradient-to-r from-brand-yellow/5 via-brand-yellow/20 to-brand-yellow/5 border border-brand-yellow/40 text-brand-yellow font-black tracking-widest text-center rounded-2xl shadow-[0_4px_25px_rgba(255,201,60,0.15)] backdrop-blur-md uppercase">
+          <p className="inline-block text-[clamp(16px,4vw,26px)] px-3 md:px-8 py-3 bg-gradient-to-r from-brand-yellow/5 via-brand-yellow/20 to-brand-yellow/5 border border-brand-yellow/40 text-brand-yellow font-black tracking-normal md:tracking-[1px] text-center rounded-2xl shadow-[0_4px_25px_rgba(255,201,60,0.15)] backdrop-blur-md normal-case whitespace-nowrap overflow-visible max-w-full">
             Dân biết - Dân dùng - Dân hài lòng
           </p>
         </div>
